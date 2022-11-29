@@ -3,5 +3,6 @@
 
 C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib<br>
 위치에 있는 "ojdbc6"를<br>
-WebContent\WEB-INF\lib 안에 복사 붙여넣기 해야함<br>
+WebContent\WEB-INF\lib 안에 복사 붙여넣기 해야합니다!!<br>
  
+💨💨💨
