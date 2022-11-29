@@ -26,7 +26,7 @@ public class DAO {
 		try {
 			conn=getConnection();
 			String sql = "SELECT MAX(custno)+1 AS CUSTNO FROM member_tbl_02";
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql); 
 			ResultSet rs = pstmt.executeQuery();
 			
 			rs.next();
@@ -41,6 +41,7 @@ public class DAO {
 		return custno;
 	}
 	
+	//회원 목록
 	public List<UserVO> SelectCustnoList() throws Exception{
 		List<UserVO> memberList = new ArrayList<UserVO>();
 		try {
@@ -70,6 +71,7 @@ public class DAO {
 		return memberList;
 	}
 	
+	//매출 목록
 	public List<MoneyVO> SelectMoneyList() throws Exception{
 		List<MoneyVO> moneyList = new ArrayList<MoneyVO>();
 		try {
@@ -100,6 +102,7 @@ public class DAO {
 		return moneyList;
 	}
 	
+	//회원등록
 	public int insertCustno(UserVO userVO) throws Exception{
 		int result = 0;
 		try {
@@ -122,6 +125,7 @@ public class DAO {
 		return result;
 	}
 	
+	//회원번호로 한명의 회원조회
 	public UserVO SelectOneCustno(int custno) throws Exception{
 		UserVO userVO = new UserVO();
 		try {
@@ -149,6 +153,7 @@ public class DAO {
 		return userVO;
 	}
 	
+	//회원 수정
 	public int UpdateCustno(UserVO userVO) throws Exception{
 		int result = 0;
 		try {

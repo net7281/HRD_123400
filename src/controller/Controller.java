@@ -50,11 +50,16 @@ public class Controller extends HttpServlet {
 		String action = request.getRequestURI().substring(request.getRequestURI().lastIndexOf("/"));
 		System.out.println(action);
 		try {
+			//첫화면
 			if(action.equals("/home") || action==null){
 				nextpage="/index.jsp";
 			}
+			
+			//회원등록 폼
 			else if(action.equals("/signMemberForm")){
 				int custno = service.newCustno();
+				
+				//오늘날짜 출력용 (등록은 sql에서 SYSDATE로)
 				LocalDate date =LocalDate.now();
 				String today = ""+date.getYear()+date.getMonthValue()+date.getDayOfMonth();
 				
@@ -63,16 +68,22 @@ public class Controller extends HttpServlet {
 				
 				nextpage="/signMemberForm.jsp";
 			}
+			
+			//회원 목록 창
 			else if(action.equals("/listMember")){
 				List<UserVO> memberList = service.memberList();
 				request.setAttribute("memberList", memberList);
 				nextpage="/listMember.jsp";
 			}
+			
+			//매출 목록 창
 			else if(action.equals("/listMoney")){
 				List<MoneyVO> moneyList = service.moneyList();
 				request.setAttribute("moneyList", moneyList);
 				nextpage="/listMoney.jsp";
 			}
+			
+			//회원등록
 			else if(action.equals("/signMember")){
 				UserVO userVO = new UserVO();
 				userVO.setCustno(Integer.parseInt(request.getParameter("custno")));
@@ -85,6 +96,8 @@ public class Controller extends HttpServlet {
 				service.addMember(userVO);
 				nextpage="/listMember";
 			}
+			
+			//회원수정 폼
 			else if(action.equals("/modMemberForm")){
 				int custno = Integer.parseInt(request.getParameter("custno"));
 				UserVO userVO = service.oneMemberList(custno);
@@ -92,6 +105,8 @@ public class Controller extends HttpServlet {
 				
 				nextpage="/modMemberForm.jsp";
 			}
+			
+			//회원수정
 			else if(action.equals("/modMember")){
 				UserVO userVO = new UserVO();
 				userVO.setCustno(Integer.parseInt(request.getParameter("custno")));
